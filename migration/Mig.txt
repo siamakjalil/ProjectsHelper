@@ -1,0 +1,3 @@
+Add-Migration Initial -IgnoreChanges
+
+Update-Database -verbose

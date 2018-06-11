@@ -1,0 +1,119 @@
+ Session["CostPageId"] = pageId;
+var costUnits = db.CostUnit.Where(u=>u.IsActive&&(unitSearch == ""||u.Title.Contains(unitSearch))&&u.CompanyId==companyId).ToList();
+  var pager = Pager.Paging(pageId, costUnits.Count());
+            ViewBag.pageId = pageId;
+            ViewBag.pageCount = pager.PageCount;
+            ViewBag.search = unitSearch;
+            return PartialView(costUnits.OrderByDescending(u => u.Id).Skip(pager.Skip).Take(pager.Take).ToList());
+
+
+  <input type="hidden" id="pageId" value="@ViewBag.pageID" />
+    <input type="hidden" id="pageCount" value="@ViewBag.pageCount" />
+
+
+
+ <div class="text-center" id="paging">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li id="backward">
+                    <a href="/admin/ShopCarts/Index?pageId=@((int)ViewBag.pageID-1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @if (ViewBag.pageCount > 4)
+                {
+                    if (ViewBag.pageID >= 4)
+                    {
+                        if (ViewBag.pageID == ViewBag.pageCount)
+                        {
+
+                            <li class="@(((int)ViewBag.pageID==1)?"active":"")"><a href="/admin/ShopCarts/Index?pageId=1">1</a></li>
+                            <li><span>...</span></li>
+                            for (int i = ViewBag.pageCount - 3; i <= ViewBag.pageCount; i++)
+                            {
+                                <li class="@(((int)ViewBag.pageID==i)?"active":"")"><a href="/admin/ShopCarts/Index?pageId=@i">@i</a></li>
+                            }
+                        }
+                        else
+                        {
+                            if (ViewBag.pageID == 1)
+                            {
+                                for (int i = 1; i <= 4; i++)
+                                {
+
+                                    <li class="@(((int)ViewBag.pageID==i)?"active":"")"><a href="/admin/ShopCarts/Index?pageId=@i">@i</a></li>
+                                }
+                                <li><span>...</span></li>
+                                <li class="@(((int)ViewBag.pageID==ViewBag.pageCount)?"active":"")"><a href="/admin/ShopCarts/Index?pageId=@ViewBag.pageCount">@ViewBag.pageCount</a></li>
+                            }
+                            else
+                            {
+                                <li class="@(((int) ViewBag.pageID == 1) ? "active" : "")"><a href="/admin/ShopCarts/Index?pageId=1">1</a></li>
+                                <li><span>...</span></li>
+                                for (int i = ViewBag.pageID - 1; i <= ViewBag.pageID + 1; i++)
+                                {
+                                    if (i != ViewBag.pageCount)
+                                    {
+                                        <li class="@(((int) ViewBag.pageID == i) ? "active" : "")"><a href="/admin/ShopCarts/Index?pageId=@i">@i</a></li>
+                                    }
+                                }
+                                <li><span>...</span></li>
+                                <li class="@(((int) ViewBag.pageID == ViewBag.pageCount) ? "active" : "")"><a href="/admin/ShopCarts/Index?pageId=@ViewBag.pageCount">@ViewBag.pageCount</a></li>
+
+                            }
+                         
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= 4; i++)
+                        {
+
+                            <li class="@(((int) ViewBag.pageID == i) ? "active" : "")"><a href="/admin/ShopCarts/Index?pageId=@i">@i</a></li>
+                        }
+                        <li><span>...</span></li>
+                        <li class="@(((int) ViewBag.pageID == ViewBag.pageCount) ? "active" : "")"><a href="/admin/ShopCarts/Index?pageId=@ViewBag.pageCount">@ViewBag.pageCount</a></li>
+                    }
+                }
+
+                @if (ViewBag.pageCount <= 4)
+                {
+                    for (int i = 1; i <= ViewBag.pageCount; i++)
+                    {
+
+                        <li class="@(((int)ViewBag.pageID==i)?"active":"")"><a href="/admin/ShopCarts/Index?pageId=@i">@i</a></li>
+                    }
+                }
+               
+
+                <li id="forward">
+                    <a href="/admin/ShopCarts/Index?pageId=@((int)ViewBag.pageID+1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function Paging(pageId) {
+            $.get("/CostCenters/Index?pageId=" + pageId, function (res) {
+
+                $("#List").html(res);
+            });
+        }
