@@ -18,6 +18,7 @@ namespace Helper
         public string MobileNumber { get; set; }
         public string ActiveCode { get; set; }
         public string OneSignalId { get; set; }
+        public string Pass { get; set; }
 
     }
 }

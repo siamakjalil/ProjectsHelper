@@ -102,6 +102,23 @@ namespace Helper
             return value.ToString("#,0 تومان");
         }
 
+        public static string ToRial(this int? value)
+        {
+            if (value==null)
+            {
+                return 0.ToString("#,0 تومان");
+            }
+            return value.Value.ToString("#,0 تومان");
+        }
+        public static string ToRial(this double? value)
+        {
+            if (value==null)
+            {
+                return 0.ToString("#,0 تومان");
+            }
+            return value.Value.ToString("#,0 تومان");
+        }
+
         public static DateTime? ShamsiToMiladi(this string ShamsiDate)
         {
             try
@@ -201,7 +218,7 @@ namespace Helper
                 int h = int.Parse(time[0].ToEnglishNumber());
                 int m = int.Parse(time[1].ToEnglishNumber());
                 int s = int.Parse(time[2].ToEnglishNumber());
-                DateTime dt = Persian.ToDateTime(year, month, day, h, m, s,0);
+                DateTime dt = Persian.ToDateTime(year, month, day, h, m, s, 0);
                 return dt;
             }
             catch (Exception e)
@@ -213,6 +230,83 @@ namespace Helper
         public static string KeyePersian(this string input)
         {
             return input.Replace("ي", "ی").Replace("ك", "ک");
+        }
+
+        public static double Round1000(this double? val)
+        {
+            if (val == null || val == 0)
+            {
+                return 0;
+            }
+
+            double doubleVal;
+            var strVal = Math.Round(val.Value).ToString();
+            var last3 = strVal.Substring(strVal.Length - 3);
+            if (last3 != "000")
+            {
+                var temp = strVal.Substring(0, strVal.Length - 3);
+                doubleVal = Convert.ToDouble(temp) + 1;
+                strVal = doubleVal.ToString() + "000";
+            }
+
+            doubleVal = Convert.ToDouble(strVal);
+            return doubleVal;
+
+
+        }
+
+        public static string NotificationDateTimeStringFormat(this DateTime dateTime)
+        {
+            var date = dateTime.Date.Year;
+            var month = dateTime.Date.Month;
+            var day = dateTime.Date.Day;
+            var time = dateTime.TimeOfDay;
+            var model = date + "-" + month + "-" + day + " " + time + " " + "GMT+0330";
+            return model;
+        }
+
+        public static bool TimeDifference(this DateTime dateTime, int difference)
+        {
+            var timeNow = DateTime.Now;
+            var res = timeNow.Subtract(dateTime);
+            var d = res.Days * 24 * 60;
+            var h = res.Hours * 60;
+            var m = res.Minutes;
+            var sum = d + h + m;
+            return sum < difference;
+        }
+
+        public static bool DayDifference(this string date, int difference)
+        {
+            if (string.IsNullOrEmpty(date))
+            {
+                return false;
+            }
+            
+            var now = DateTime.Now.ToShamsi().Split('/');
+            var startDate = date.Split('/');
+            int ignoreMe=0;
+            bool successfullyParsed = int.TryParse(startDate[2], out ignoreMe);
+            if (!successfullyParsed)
+            {
+                var temp = date.ShamsiToMiladi();
+                date = temp != null ? temp.Value.ToShamsi() : DateTime.Now.ToShamsi();
+                startDate = date.Split('/');
+            }
+            var year = int.Parse(now[0]) - int.Parse(startDate[0]);
+            var dOfy = year * 365;
+            var nMonth = int.Parse(now[1]) <= 6 ? int.Parse(now[1]) * 31 : int.Parse(now[1]) * 30;
+            var sMonth = int.Parse(startDate[1]) <= 6 ? int.Parse(startDate[1]) * 31 : int.Parse(startDate[1]) * 30;
+            var month = nMonth - sMonth;
+            var day = int.Parse(now[2]) - int.Parse(startDate[2]);
+            var value = dOfy + month + day;
+            return (value > 31 || value > 30);
+        }
+
+        public static string GenrateCode(this int val)
+        {
+          return  
+              Guid.NewGuid().GetHashCode().ToString().Replace("-", string.Empty).Substring(0,val );
         }
     }
 }

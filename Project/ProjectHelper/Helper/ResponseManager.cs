@@ -57,6 +57,34 @@ namespace Helper
                 ErrorTitle = "کاربر یافت نشد",
             });
         }
+        public static ServiceMessage LoginWithPass()
+        {
+            return (new ServiceMessage()
+            {
+                ErrorId = 22,
+                ErrorTitle = null,
+                Result = null
+            });
+        }
+
+        public static ServiceMessage CustoMessage(int id, string title, string res)
+        {
+            return (new ServiceMessage()
+            {
+                ErrorId = id,
+                ErrorTitle = title,
+                Result = res
+            });
+        }
+        public static ServiceMessage CustoMessage(int id, string title, dynamic res)
+        {
+            return (new ServiceMessage()
+            {
+                ErrorId = id,
+                ErrorTitle = title,
+                Result = res
+            });
+        }
 
 
     }
