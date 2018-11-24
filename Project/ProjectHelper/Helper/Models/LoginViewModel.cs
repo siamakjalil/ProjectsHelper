@@ -12,6 +12,11 @@ namespace Helper
         public string MobileNumber { get; set; }
         public string ReagentCode { get; set; }
     }
+    public class UserNameLoginViewModel
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
 
     public class ActivationViewModel
     {

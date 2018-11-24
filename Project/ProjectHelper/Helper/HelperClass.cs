@@ -24,6 +24,22 @@ namespace Helper
                 }
             };
         }
+        public static List<IdTitle> GenderList()
+        {
+            return new List<IdTitle>() 
+            {
+                new IdTitle()
+                {
+                    Id = (int)Gender.Male,
+                    Title = ((int)Gender.Male).GetGenderVal()
+                },
+                new IdTitle()
+                {
+                    Id = (int)Gender.Female,
+                    Title = ((int)Gender.Female).GetGenderVal()
+                }
+            };
+        }
 
         public static List<IdTitle> NumberDropDown(int val)
         {

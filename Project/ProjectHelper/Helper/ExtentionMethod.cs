@@ -204,6 +204,16 @@ namespace Helper
             }
         }
 
+        public static string GetGenderVal(this int value)
+        {
+            switch (value)
+            {
+                case 1: return "مرد";
+                case 2: return "زن"; 
+                default: return "";
+            }
+        }
+
         public static DateTime? ToMiladiDateTime(this string value)
         {
             try

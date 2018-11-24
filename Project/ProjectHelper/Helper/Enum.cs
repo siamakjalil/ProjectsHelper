@@ -12,5 +12,11 @@ namespace Helper
         Deactive = 2,//غیرفعال
         Deleted = 3//حذف شده
     }
+   public enum Gender
+    {
+        Male = 1,//مرد
+         Female = 2,//زن
+        
+    }
 
 }
