@@ -24,6 +24,7 @@ namespace Helper
         public string ActiveCode { get; set; }
         public string OneSignalId { get; set; }
         public string Pass { get; set; }
+        public bool Recovery { get; set; }
 
     }
 }

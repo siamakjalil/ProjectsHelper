@@ -10,8 +10,8 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            var date = DateTime.Parse("2018-05-21 15:05:05.097");
-            Helper.ExtentionMethod.DayDifference("1397/07/01 10:22:20", 15);
+            var date = DateTime.Now;
+          var model=  Helper.ExtentionMethod.ToTime(date);
         }
     }
 }

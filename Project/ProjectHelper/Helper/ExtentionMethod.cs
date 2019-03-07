@@ -89,6 +89,11 @@ namespace Helper
 
             return ((time < 10) ? "0" + time + ":" + "00" : time + ":" + "00");
         }
+        public static string ToTime(this DateTime time)
+        {
+
+            return time.ToString("HH:mm"); ;
+        }
         public static string ToRial(this double value)
         {
             return value.ToString("#,0 تومان");
