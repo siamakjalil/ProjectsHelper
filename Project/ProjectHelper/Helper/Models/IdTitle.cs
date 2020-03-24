@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Helper
 {
-  public  class IdTitle
+    //Developed by SIAMAK JALILI
+    //www.Siamakjalili.com
+    public class IdTitle
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -1,0 +1,19 @@
+ <input type="text" autocomplete="off" class="date-time-input form-control" id="NewDateVal" name="NewDateVal" value="" required="" oninvalid="this.setCustomValidity('???? ????? ?? ???? ????')" oninput="setCustomValidity('')" />
+
+
+<link href="~/Content/persian-datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/persian-date.min.js"></script>
+<script src="~/Scripts/persian-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Persian Datepicker
+            $("#NewDateVal").pDatepicker({
+                format: 'YYYY/MM/DD'
+            });
+            $("#NewDateVal").val("");
+            //var date = $("#date").val();
+            //if (date != "") {
+            //    $(".date-time-input").val(date);
+            //}
+        });
+    </script>

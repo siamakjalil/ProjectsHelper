@@ -5,6 +5,8 @@ using System.Web;
 
 namespace Helper
 {
+    //Developed by SIAMAK JALILI
+    //www.Siamakjalili.com
     public static class Pager
     {
         public class Page

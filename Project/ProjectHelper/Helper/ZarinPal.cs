@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Helper
 {
-   public static class ZarinPal
+    //Developed by SIAMAK JALILI
+    //www.Siamakjalili.com
+    public static class ZarinPal
     {
         public static string GetPaymentRequestStatusVal(this int status)
         {

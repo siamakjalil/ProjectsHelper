@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Helper
 {
-   public class LoginViewModel
+    //Developed by SIAMAK JALILI
+    //www.Siamakjalili.com
+    public class LoginViewModel
     {
         public string MobileNumber { get; set; }
         public string ReagentCode { get; set; }

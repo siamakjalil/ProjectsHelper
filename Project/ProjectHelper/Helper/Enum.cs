@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Helper
 {
-   public enum Status
+    //Developed by SIAMAK JALILI
+    //www.Siamakjalili.com
+
+    public enum Status
     {
         Active = 1,//فعال
         Deactive = 2,//غیرفعال

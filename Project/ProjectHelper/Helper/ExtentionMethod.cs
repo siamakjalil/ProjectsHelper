@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 
 namespace Helper
 {
+    //Developed by SIAMAK JALILI
+    //www.Siamakjalili.com
+    /// <summary>
+    /// helper
+    /// </summary>
+    
+    /*
+     * helper
+     */
     public static class ExtentionMethod
     {
         public static string ToMobileNumber(this string mobileNumber)
@@ -93,6 +102,14 @@ namespace Helper
         {
 
             return time.ToString("HH:mm"); ;
+        }
+        public static string Rial(this double value)
+        {
+            return value.ToString("#,0 ریال");
+        }
+        public static string Rial(this int value)
+        {
+            return value.ToString("#,0 ریال");
         }
         public static string ToRial(this double value)
         {
@@ -216,6 +233,19 @@ namespace Helper
                 case 1: return "مرد";
                 case 2: return "زن"; 
                 default: return "";
+            }
+        }
+        public static int GetGenderId(this string value)
+        {
+            if (value==null)
+            {
+                return 0;
+            }
+            switch (value.Trim())
+            {
+                case "مرد": return 1;
+                case "زن": return 2; 
+                default: return 0;
             }
         }
 
